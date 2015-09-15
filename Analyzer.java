@@ -32,6 +32,9 @@ public class Analyzer
 
         public static void main(String[] args)
         {
+
+		lexeme = new char[100];
+
 		try{
 			fr = new FileReader("front.in"); 
 			br = new BufferedReader(fr);
@@ -161,7 +164,7 @@ public class Analyzer
 				break;
 		}
 
-		System.out.println("Next token is: " + nextToken + ", Nex lexeme is " + lexeme);
+		System.out.println("Next token is: " + nextToken + ", Next lexeme is " + new String(lexeme));
 
 		return nextToken;
 	}		
