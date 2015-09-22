@@ -9,6 +9,7 @@ class Parser
     const LETTER = 0;
     const DIGIT = 1;
     const POINT = 2;
+    const INVALID = 98;
     const UNKNOWN = 99;
 
     /* Token codes */
@@ -128,10 +129,16 @@ class Parser
                 do {
                     if ($this->charClass == self::POINT)
                         $pCount++;
+
                     $this->addChar();
                     $this->getChar();
-                } while ($this->charClass == self::DIGIT || ($pCount == 0 && $this->charClass == self::POINT));
+                } while ($this->charClass == self::DIGIT || ($this->charClass == self::POINT));
+
                 $this->nextToken = self::INT_LIT;
+
+                if($pCount > 1)
+                    $this->nextToken = self::INVALID;
+
                 break;
 
             case self::EOF:
@@ -214,5 +221,10 @@ class Parser
         }
 
         echo "Exit <factor>\n";
+    }
+
+    public function error()
+    {
+        echo "A error ocurred\n";
     }
 }
