@@ -1,40 +1,28 @@
 #include <chrono>
 #include <iostream>
 
-const int size = 10000, rep = 100000;
-
-int static_array(int x) {
-    static int a[size];
-    long long sum = 0;
-    for (int i = 0; i < size; ++i) {
-        a[i] = i & x;
-        sum += a[i];
-    }
-    return sum;
-}
-
-int stack_array(int x) {
-    int a[size];
-    long long sum = 0;
-    for (int i = 0; i < size; ++i) {
-        a[i] = i & x;
-        sum += a[i];
-    }
-    return sum;
-}
-
-int heap_array(int x) {
-    int *a = new int[size];
-    long long sum = 0;
-    for (int i = 0; i < size; ++i) {
-        a[i] = i & x;
-        sum += a[i];
-    }
-    delete[] a;
-    return sum;
-}
+#define size 66666
+#define times 66666
 
 using namespace std;
+
+void static_array(int x) {
+    static int a[size];
+    for (int i = 0; i < size; i++)
+        a[i] = i + x;
+}
+
+void stack_array(int x) {
+    int a[size];
+    for (int i = 0; i < size; i++)
+        a[i] = i + x;
+}
+
+void heap_array(int x) {
+    int *a = new int[size];
+    for (int i = 0; i < size; i++)
+        a[i] = i + x;
+}
 
 int main() {
     chrono::time_point<chrono::system_clock> start, end;
@@ -42,7 +30,7 @@ int main() {
     long long opt = 0;
 
     start = chrono::system_clock::now();
-    for (int i = 0; i < rep; ++i)
+    for (int i = 0; i < times; ++i)
         opt += static_array(i);
     end = chrono::system_clock::now();
     cout << "Time for static: " <<
@@ -50,7 +38,7 @@ int main() {
          << endl;
 
     start = chrono::system_clock::now();
-    for (int i = 0; i < rep; ++i)
+    for (int i = 0; i < times; ++i)
         opt += stack_array(i);
     end = chrono::system_clock::now();
     cout << "Time for stack: " <<
@@ -58,7 +46,7 @@ int main() {
          << endl;
 
     start = chrono::system_clock::now();
-    for (int i = 0; i < rep; ++i)
+    for (int i = 0; i < times; ++i)
         opt += heap_array(i);
     end = chrono::system_clock::now();
     cout << "Time for heap: " <<
