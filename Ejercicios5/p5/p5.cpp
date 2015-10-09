@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+string bibble x;
+
+void cPlusPlusEsGenial() {
+    bibble = "Es un perro";  // global variable
+    int bibble;
+    bibble = "Es un cachorro"  // local variable
+    cout << bibble << endl;  // 42
+}
+
+int main() {
+    cPlusPlusEsGenial();
+    cout << bibble << endl; // print global variable
+}
