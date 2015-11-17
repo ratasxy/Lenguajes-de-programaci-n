@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+string bibble;
+
+void cEsGenial() {
+    bibble = "Es mi perro";  /* global variable */
+    int x;
+    bibble = "Es mi cachorro";  /* local variable */
+    printf("%s\n", bibble);  /* print local variable */
+}
+
+int main() {
+    fun();
+    printf("%s\n", bibble);  /* print global variable */
+}
