@@ -1,0 +1,11 @@
+(define (delete-from lista x)
+  (if (null? lista)
+    '()
+    (let ((t (delete-from (cdr lista) x)) (h (car lista)))
+      (if (equal? h x)
+        t
+        (cons h t)
+      )
+    )
+  )
+)

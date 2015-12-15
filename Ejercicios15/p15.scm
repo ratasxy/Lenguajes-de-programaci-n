@@ -1,0 +1,6 @@
+(define (get-second lista)
+  (if (or (null? lista) (null? (cdr lista)))
+    '()
+    (cadr lista)
+  )
+)
